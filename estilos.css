@@ -1,0 +1,187 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+    font-size: 10px;
+    list-style: none;
+    font-family: 'Roboto Condensed', sans-serif;
+    overflow-x: hidden;
+}
+
+img{
+    max-width: 100%;
+}
+
+body{
+    display: flex;
+    flex-flow: row wrap;
+    align-items: flex-start;
+    justify-content: center;
+    width: 100vw;
+    height: 100rem;
+    background-color: #3A2D32;
+}
+
+header{
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+    height: 10rem;
+    background-color: #A2AD91;
+}
+
+    header img{
+        width: 20rem;
+        height: 10rem;
+    }
+
+    header h2{
+        font-size: 5rem;
+        color:#3A2D32;
+    }
+
+.section_howToPlay{
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    height: 20rem;
+
+}
+
+    .section_howToPlay-title{
+        width: 30%;
+    }
+
+        .section_howToPlay-title h2{
+            font-size: 5rem;
+            color:#A2AD91;
+        }
+
+    .section_howToPlay-description{
+        width: 40%;
+    }
+
+        .section_howToPlay-description p{
+            font-size: 2.5rem;
+            color:#A2AD91;
+        }
+
+.section_start{
+    display: flex;
+    align-items: center;
+    flex-flow: column wrap;
+    justify-content: space-evenly;
+    width: 30%;
+    height: 50rem;
+}
+
+    .section_start_row1{
+        display: flex;
+        flex-flow: column wrap;
+        align-items: center;
+        justify-content: space-around;
+        width: 100%;
+        height: 50%;
+    }
+
+        .section_start_row1 button{
+            font-size: 3rem;
+            padding: 1rem;
+            color: #3A2D32;
+            background: #A2AD91;
+            border: none;
+            cursor: pointer;
+        }
+
+        .section_start_row1 h3{
+            font-size: 5rem;
+            color: #A2AD91;
+        }
+
+    .section_start_row2{
+        display: flex;
+        flex-flow: row wrap;
+        align-items: center;
+        justify-content: space-around;
+        width: 80%;
+        height: 50%;
+    }
+
+        .section_start_row2 button{
+            font-size: 3rem;
+            padding: 1rem;
+            color: #3A2D32;
+            background: #A2AD91;
+            border: none;
+            cursor: pointer;
+        }
+
+        .section_start_row2 h3{
+            font-size: 5rem;
+            color: #A2AD91;
+        }
+
+
+.section_container{
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    height: 50rem;
+    background: #000;
+    border-radius: 50%;
+}
+
+    .box_color{
+        height: 43%;
+        width: 43%;
+        margin: 1rem;
+    }
+
+        .green{
+            background-color: rgb(0, 100, 0);
+            border-top-left-radius: 100%;
+            border-bottom-right-radius: -100%;
+        }
+
+        .red{
+            background-color: rgb(100, 0, 0);
+            border-bottom-left-radius: 100%;
+        }
+
+        .yellow{
+            background-color: rgb(100, 100, 0);
+            border-top-right-radius: 100%;
+
+        }
+
+        .blue{
+            background-color: rgb(0, 0, 100);
+            border-bottom-right-radius: 100%;
+        }
+        
+        .green-color{
+            background-color: rgb(0, 255, 0);
+        }
+
+        .red-color{
+            background-color: rgb(255, 0, 0);
+        }
+
+        .yellow-color{
+            background-color: rgb(255, 255, 0);
+        }
+
+        .blue-color{
+            background-color: rgb(0, 0, 255);
+        }
+
+.section_def{
+    width: 100%;
+    height: 10rem;
+}
