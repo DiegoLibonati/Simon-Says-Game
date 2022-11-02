@@ -40,3 +40,7 @@ I made a website that allows you to play simon says. You can choose between 3 di
 `https://diegolibonati.github.io/DiegoLibonatiWeb/#/projects?q=Simon%20says%20page`
 
 ## Video
+
+
+https://user-images.githubusercontent.com/99032604/199375024-8f4a4b86-776b-4cb5-8158-18dedbb3d220.mp4
+
