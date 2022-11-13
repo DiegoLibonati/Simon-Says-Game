@@ -37,7 +37,7 @@ I made a website that allows you to play simon says. You can choose between 3 di
 
 ## Portfolio Link
 
-`https://diegolibonati.github.io/DiegoLibonatiWeb/#/projects?q=Simon%20says%20page`
+`https://diegolibonati.github.io/DiegoLibonatiWeb/#/projects?q=Simon%20Says%20Page`
 
 ## Video
 
