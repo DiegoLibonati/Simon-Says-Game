@@ -23,21 +23,9 @@ I made a website that allows you to play simon says. You can choose between 3 di
 2. CSS3
 3. HTML5
 
-## Galery
-
-![Simon-Says-page](https://raw.githubusercontent.com/DiegoLibonati/DiegoLibonatiWeb/main/data/projects/Javascript/Imagenes/simonsay-0.jpg)
-
-![Simon-Says-page](https://raw.githubusercontent.com/DiegoLibonati/DiegoLibonatiWeb/main/data/projects/Javascript/Imagenes/simonsay-1.jpg)
-
-![Simon-Says-page](https://raw.githubusercontent.com/DiegoLibonati/DiegoLibonatiWeb/main/data/projects/Javascript/Imagenes/simonsay-2.jpg)
-
-![Simon-Says-page](https://raw.githubusercontent.com/DiegoLibonati/DiegoLibonatiWeb/main/data/projects/Javascript/Imagenes/simonsay-3.jpg)
-
-![Simon-Says-page](https://raw.githubusercontent.com/DiegoLibonati/DiegoLibonatiWeb/main/data/projects/Javascript/Imagenes/simonsay-4.jpg)
-
 ## Portfolio Link
 
-`https://diegolibonati.github.io/DiegoLibonatiWeb/#/projects?q=Simon%20Says%20Page`
+[`https://www.diegolibonati.com.ar/#/project/47`](https://www.diegolibonati.com.ar/#/project/47)
 
 ## Video
 
