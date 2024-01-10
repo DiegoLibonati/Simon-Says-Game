@@ -1,48 +1,3 @@
-# Simon-Says-Game-Page
-
-## Getting Started
-
-1. Clone the repository
-2. Join to the correct path of the clone
-3. Install LiveServer extension from Visual Studio Code [OPTIONAL]
-4. Click in "Go Live" from LiveServer extension
-
----
-
-1. Clone the repository
-2. Join to the correct path of the clone
-3. Open index.html in your favorite navigator
-
----
-
-1. Clone the repository
-2. Join to the correct path of the clone
-3. Execute: `yarn install`
-4. Execute: `yarn dev`
-
-## Description
-
-I made a website that allows you to play simon says. You can choose between 3 difficulties: easy, medium and hard. The difference between these difficulties is the speed that the colors will be shown on the screen. Being easy very slow and hard very fast the game itself. Each time we do well the pattern of colors indicated by the game we will add 1 point.
-
-## Technologies used
-
-1. Typescript
-2. CSS3
-3. HTML5
-
-## Portfolio Link
-
-[`https://www.diegolibonati.com.ar/#/project/47`](https://www.diegolibonati.com.ar/#/project/47)
-
-## Video
-
-https://user-images.githubusercontent.com/99032604/199375024-8f4a4b86-776b-4cb5-8158-18dedbb3d220.mp4
-
-## Documentation
-
-Here we obtain all the containers that we are going to use from the DOM:
-
-```
 const colorsBox = document.querySelectorAll(".box_color") as NodeList;
 const btnsDifficulty = document.querySelectorAll(".btnDif") as NodeList;
 const btnStart = document.querySelector(
@@ -50,11 +5,7 @@ const btnStart = document.querySelector(
 ) as HTMLButtonElement;
 const whoPlaysHtml = document.querySelector(".whoPlays") as HTMLHeadingElement;
 const scoreHtml = document.querySelector(".score") as HTMLHeadingElement;
-```
 
-The variable `valuesCanPlayIA` indicates what possibilities the computer can play. The variable `arrayIA` refers to the colors the computer played. The variable `iaCanPlay` refers to whether the computer can play. The variable `userCanPlay` indicates whether the user can play. The variable `arrayUser` is an array that integrates the colors played by the user. The variable `checkIfUserIsEqualToIa` checks if the user played the same as the computer. The variable `score` dictates the score of the user, if the user matches the pattern a point will be added. The variable `isTheGameLose` indicates if the game is over. The variable `IsPlaying` dictates if the AI is playing. The variable `timeColorDelay` refers to the delay time between color and color `timeColorChange` and so does this variable.
-
-```
 const valuesCanPlayIA = ["green", "yellow", "red", "blue"];
 let arrayIA: string[] = [];
 let iaCanPlay: boolean = false;
@@ -71,11 +22,7 @@ let isPlaying: boolean = false;
 
 let timeColorDelay: number = 1000;
 let timeColorChange: number = 500;
-```
 
-This function starts the game when the `Start` button is pressed:
-
-```
 // Function: Inicio de juego
 const startGame = (): void => {
   if (isTheGameLose == false) {
@@ -92,11 +39,10 @@ const startGame = (): void => {
     resetGame(timeColorDelay, timeColorChange);
   }
 };
-```
 
-The `selectDifficulty()` function changes the difficulty of the game:
+// Btn Start Game
+btnStart.addEventListener("click", startGame);
 
-```
 const selectDifficulty = (e: Event): void => {
   const target = e.currentTarget as HTMLElement;
 
@@ -112,11 +58,13 @@ const selectDifficulty = (e: Event): void => {
     resetGame(250, 125);
   }
 };
-```
 
-This `resetGame()` function basically resets the game, it is passed how often the color is going to change and in what time:
+// Btns Difficulty
+btnsDifficulty.forEach(function (btnDif) {
+  btnDif.addEventListener("click", selectDifficulty);
+});
 
-```
+// Se resea el juego. Se pasa los parametros de cambio de color y cada cuanto dice que color es
 const resetGame = (tcd: number, tcc: number): void => {
   if (isPlaying == false) {
     whoPlaysHtml.innerHTML = `JUEGA IA`;
@@ -136,11 +84,8 @@ const resetGame = (tcd: number, tcc: number): void => {
     );
   }
 };
-```
 
-The `userSystemPlay()` function means that if userCanPlay is True, clicking will change the color of the boxColor and push the element to the arrayUser. If the user's array is equal to the previous AI array. Go on to check both arrays:
-
-```
+// Si userCanPlay es True, al clickear vas a cambiar el color de la boxColor y vas a pushear el elemento al arrayUser. Si el array del usuario es igual al array previo de la IA. Pasa a chequear ambos arrays.
 const userSystemPlay = (e: Event): void => {
   if (userCanPlay == true) {
     const target = e.currentTarget as HTMLElement;
@@ -157,11 +102,13 @@ const userSystemPlay = (e: Event): void => {
     }
   }
 };
-```
 
-The `changeColorViewOfTableTop()` function changes the colors of their respective boxes:
+// Obtenes los colores y le damos a cada uno la funcion de click.
+colorsBox.forEach(function (colorBox) {
+  colorBox.addEventListener("click", userSystemPlay);
+});
 
-```
+// Funcion que cambia los colores de sus respectivos boxes.
 const changeColorViewOfTabletop = (
   itemId: string,
   item: HTMLElement,
@@ -173,21 +120,17 @@ const changeColorViewOfTabletop = (
     item.classList.remove(`${itemId}-color`);
   }, time);
 };
-```
 
-The `iaSelectColorToPlay()` function allows to get some random color from valuesCanPlayIA and returns them:
-
-```
+// Funcion que permite obtener algun color aleatoria de valuesCanPlayIA y los retorna.
 const iaSelectColorToPlay = (): string => {
   const randomColor = Math.floor(Math.random() * valuesCanPlayIA.length);
 
   return valuesCanPlayIA[randomColor];
 };
-```
 
-The `iaPlay()` function allows to make the machine play. If the machine's array is less than iaCount it will keep playing. It will choose a random color and push it to the existing arrayIA. Then, through the loopIa function it will loop through the arrayIA and show what colors are being played on the screen if the box id and the array value are equal. This will have a delay of 1000 seconds and will call the function again.
-
-```
+// Funcion que permite hacer jugar a la maquina. Si el array de la maquina es menor a iaCount va a seguir jugando. Va elegir un color random y lo va pushear al arrayIA existente.
+// Luego, a traves de la funcion loopIa va a recorrer el arrayIA y va a mostrar que colores se estan tocando en pantalla si el id de la caja y el valor del array son iguales.
+// Esto tendra un delay de 1000 segundos y volvera a llamar a la funcion.
 const iaPlay = (timeColorDelay: number, timeColorChange: number): void => {
   if (!(arrayIA.length === iaCount)) {
     const iaPickColor = iaSelectColorToPlay();
@@ -215,11 +158,8 @@ const iaPlay = (timeColorDelay: number, timeColorChange: number): void => {
     loopIa();
   }
 };
-```
 
-The `whoPlays()` function dictates who plays:
-
-```
+// Funcion que dictamina quien juega.
 const whoPlays = (): void => {
   // Juega la maquina
   if (
@@ -274,11 +214,8 @@ const whoPlays = (): void => {
     }
   }
 };
-```
 
-The `checkArraysIaAndUser()` function allows to know if two arrays are equal or not:
-
-```
+// Funcion que permite comparar amabos arrays.
 const checkArraysIaAndUser = (arr: string[], arr2: string[]): boolean => {
   if (arr === arr2) return true;
   if (arr == null || arr2 == null) return false;
@@ -290,4 +227,3 @@ const checkArraysIaAndUser = (arr: string[], arr2: string[]): boolean => {
 
   return true;
 };
-```
