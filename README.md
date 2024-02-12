@@ -36,7 +36,7 @@ I made a website that allows you to play simon says. You can choose between 3 di
 
 ## Video
 
-https://user-images.githubusercontent.com/99032604/199375024-8f4a4b86-776b-4cb5-8158-18dedbb3d220.mp4
+https://github.com/DiegoLibonati/Simon-Says-Game-Page/assets/99032604/575ea582-d12d-4ae2-96a4-8aa1218fb5ab
 
 ## Documentation
 
