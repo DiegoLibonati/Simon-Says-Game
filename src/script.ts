@@ -68,6 +68,7 @@ btnsDifficulty.forEach(function (btnDif) {
 const resetGame = (tcd: number, tcc: number): void => {
   if (isPlaying == false) {
     whoPlaysHtml.innerHTML = `JUEGA IA`;
+    score = 0;
     isTheGameLose = false;
     iaCanPlay = true;
     userCanPlay = false;
@@ -77,6 +78,7 @@ const resetGame = (tcd: number, tcc: number): void => {
     arrayIA = [];
     timeColorDelay = tcd;
     timeColorChange = tcc;
+    scoreHtml.innerHTML = `SCORE: ${score}`;
     startGame();
   } else {
     console.log(

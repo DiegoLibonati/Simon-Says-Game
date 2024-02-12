@@ -18,7 +18,7 @@ body{
     align-items: flex-start;
     justify-content: center;
     width: 100vw;
-    height: 100rem;
+    height: auto;
     background-color: #3A2D32;
 }
 
@@ -28,102 +28,106 @@ header{
     align-items: center;
     justify-content: space-evenly;
     width: 100%;
-    height: 10rem;
+    height: auto;
     background-color: #A2AD91;
 }
 
     header img{
-        width: 20rem;
-        height: 10rem;
+        width: 6rem;
+        height: 6rem;
+        object-fit: cover;
     }
 
     header h2{
-        font-size: 5rem;
-        color:#3A2D32;
+        font-size: 2rem;
+        color: white;
     }
 
 .section_howToPlay{
-
     display: flex;
+    flex-flow: column wrap;
     align-items: center;
     justify-content: center;
     width: 80%;
-    height: 20rem;
-
+    height: auto;
+    margin-top: 2rem;
 }
-
-    .section_howToPlay-title{
-        width: 30%;
+    .section_howToPlay-title h2{
+        font-size: 3rem;
+        color:#A2AD91;
     }
 
-        .section_howToPlay-title h2{
-            font-size: 5rem;
-            color:#A2AD91;
-        }
-
-    .section_howToPlay-description{
-        width: 40%;
+    .section_howToPlay-description p{
+        font-size: 1.5rem;
+        color:#A2AD91;
+        margin-top: 2rem;
     }
-
-        .section_howToPlay-description p{
-            font-size: 2.5rem;
-            color:#A2AD91;
-        }
 
 .section_start{
     display: flex;
     align-items: center;
     flex-flow: column wrap;
     justify-content: space-evenly;
-    width: 30%;
-    height: 50rem;
+    width: 100%;
+    height: auto;
+    margin-top: 2rem;
 }
 
-    .section_start_row1{
+    .section_start_article{
         display: flex;
+        align-items: center;
+        justify-content: center;
         flex-flow: column wrap;
-        align-items: center;
-        justify-content: space-around;
         width: 100%;
-        height: 50%;
+        height: auto;
     }
 
-        .section_start_row1 button{
-            font-size: 3rem;
-            padding: 1rem;
-            color: #3A2D32;
-            background: #A2AD91;
-            border: none;
-            cursor: pointer;
+        .section_start_row1{
+            display: flex;
+            flex-flow: column wrap;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
         }
 
-        .section_start_row1 h3{
-            font-size: 5rem;
-            color: #A2AD91;
+            .section_start_row1 button{
+                font-size: 3rem;
+                padding: 1rem;
+                color: #3A2D32;
+                background: #A2AD91;
+                border: none;
+                cursor: pointer;
+                margin-top: 2rem;
+            }
+
+            .section_start_row1 h3{
+                font-size: 2.5rem;
+                color: #A2AD91;
+            }
+
+        .section_start_row2{
+            display: flex;
+            flex-flow: row wrap;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            margin-top: 2rem;
         }
 
-    .section_start_row2{
-        display: flex;
-        flex-flow: row wrap;
-        align-items: center;
-        justify-content: space-around;
-        width: 80%;
-        height: 50%;
-    }
+            .section_start_row2 button{
+                font-size: 3rem;
+                padding: 1rem;
+                color: #3A2D32;
+                background: #A2AD91;
+                border: none;
+                cursor: pointer;
+                margin-left: 1rem;
+            }
 
-        .section_start_row2 button{
-            font-size: 3rem;
-            padding: 1rem;
-            color: #3A2D32;
-            background: #A2AD91;
-            border: none;
-            cursor: pointer;
-        }
-
-        .section_start_row2 h3{
-            font-size: 5rem;
-            color: #A2AD91;
-        }
+            .section_start_row2 h3{
+                font-size: 2.5rem;
+                color: #A2AD91;
+            }
 
 
 .section_container{
@@ -131,10 +135,12 @@ header{
     flex-flow: column wrap;
     justify-content: center;
     align-items: center;
-    width: 30%;
-    height: 50rem;
+    width: 30rem;
+    height: 30rem;
     background: #000;
     border-radius: 50%;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
 }
 
     .box_color{
