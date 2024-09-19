@@ -1,4 +1,4 @@
-# Simon-Says-Game-Page
+# Simon-Says-Game
 
 ## Getting Started
 
@@ -32,7 +32,7 @@ I made a website that allows you to play simon says. You can choose between 3 di
 
 ## Portfolio Link
 
-[`https://www.diegolibonati.com.ar/#/project/47`](https://www.diegolibonati.com.ar/#/project/47)
+[`https://www.diegolibonati.com.ar/#/project/Simon-Says-Game`](https://www.diegolibonati.com.ar/#/project/Simon-Says-Game)
 
 ## Video
 
