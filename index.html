@@ -51,13 +51,24 @@
 
           <h3 class="score">SCORE: 0</h3>
 
-          <button type="button">START</button>
+          <button type="button" aria-label="start">START</button>
         </div>
 
         <div class="section_start_row2">
-          <button type="button" class="btnDif" id="easy">EASY</button>
-          <button type="button" class="btnDif" id="medium">MEDIUM</button>
-          <button type="button" class="btnDif" id="hard">HARD</button>
+          <button type="button" class="btnDif" id="easy" aria-label="easy mode">
+            EASY
+          </button>
+          <button
+            type="button"
+            class="btnDif"
+            id="medium"
+            aria-label="medium mode"
+          >
+            MEDIUM
+          </button>
+          <button type="button" class="btnDif" id="hard" aria-label="hard mode">
+            HARD
+          </button>
         </div>
       </article>
 
@@ -72,6 +83,6 @@
       </article>
     </section>
 
-    <script src="./src/script.ts"></script>
+    <script type="module" src="./src/index.ts"></script>
   </body>
 </html>
