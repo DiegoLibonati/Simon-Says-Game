@@ -197,8 +197,8 @@ const onInit = () => {
   // Btn Start Game
   btnStart.addEventListener("click", () => handleStartGame());
   // Btns Difficulty
-  btnsDifficulty.forEach((btnDif) =>
-    btnDif.addEventListener("click", handleSelectDifficulty)
+  btnsDifficulty.forEach((btn__mode) =>
+    btn__mode.addEventListener("click", handleSelectDifficulty)
   );
   // Obtenes los colores y le damos a cada uno la funcion de click.
   colorsBox.forEach((colorBox) =>

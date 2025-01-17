@@ -1,49 +1,25 @@
-* {
-  padding: 0px;
-  margin: 0px;
-  box-sizing: border-box;
-  font-size: 10px;
-  list-style: none;
-  font-family: "Roboto Condensed", sans-serif;
-  overflow-x: hidden;
-}
-
-img {
-  max-width: 100%;
-}
-
-body {
-  display: flex;
-  flex-flow: row wrap;
-  align-items: flex-start;
-  justify-content: center;
-  width: 100vw;
-  height: auto;
-  background-color: #3a2d32;
-}
-
-header {
+.header {
   display: flex;
   flex-flow: row wrap;
   align-items: center;
   justify-content: space-evenly;
   width: 100%;
   height: auto;
-  background-color: #a2ad91;
+  background-color: var(--secondary-color);
 }
 
-header img {
+.header img {
   width: 6rem;
   height: 6rem;
   object-fit: cover;
 }
 
-header h2 {
+.header h2 {
   font-size: 2rem;
-  color: white;
+  color: var(--white-color);
 }
 
-.section_howToPlay {
+.tutorial {
   display: flex;
   flex-flow: column wrap;
   align-items: center;
@@ -52,18 +28,18 @@ header h2 {
   height: auto;
   margin-top: 2rem;
 }
-.section_howToPlay-title h2 {
+.tutorial__title h2 {
   font-size: 3rem;
-  color: #a2ad91;
+  color: var(--secondary-color);
 }
 
-.section_howToPlay-description p {
+.tutorial__description p {
   font-size: 1.5rem;
-  color: #a2ad91;
+  color: var(--secondary-color);
   margin-top: 2rem;
 }
 
-.section_start {
+.game {
   display: flex;
   align-items: center;
   flex-flow: column wrap;
@@ -73,7 +49,7 @@ header h2 {
   margin-top: 2rem;
 }
 
-.section_start_article {
+.game__btns {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -82,7 +58,7 @@ header h2 {
   height: auto;
 }
 
-.section_start_row1 {
+.game__btns__header {
   display: flex;
   flex-flow: column wrap;
   align-items: center;
@@ -90,22 +66,22 @@ header h2 {
   width: 100%;
 }
 
-.section_start_row1 button {
+.game__btns__header button {
   font-size: 3rem;
   padding: 1rem;
-  color: #3a2d32;
-  background: #a2ad91;
+  color: var(--primary-color);
+  background: var(--secondary-color);
   border: none;
   cursor: pointer;
   margin-top: 2rem;
 }
 
-.section_start_row1 h3 {
+.game__btns__header h3 {
   font-size: 2.5rem;
-  color: #a2ad91;
+  color: var(--secondary-color);
 }
 
-.section_start_row2 {
+.game__modes {
   display: flex;
   flex-flow: row wrap;
   align-items: center;
@@ -114,75 +90,75 @@ header h2 {
   margin-top: 2rem;
 }
 
-.section_start_row2 button {
+.game__modes button {
   font-size: 3rem;
   padding: 1rem;
-  color: #3a2d32;
-  background: #a2ad91;
+  color: var(--primary-color);
+  background: var(--secondary-color);
   border: none;
   cursor: pointer;
   margin-left: 1rem;
 }
 
-.section_start_row2 h3 {
+.game__modes h3 {
   font-size: 2.5rem;
-  color: #a2ad91;
+  color: var(--secondary-color);
 }
 
-.section_container {
+.game__board {
   display: flex;
   flex-flow: column wrap;
   justify-content: center;
   align-items: center;
   width: 30rem;
   height: 30rem;
-  background: #000;
+  background: var(--black-color);
   border-radius: 50%;
   margin-top: 2rem;
   margin-bottom: 2rem;
 }
 
-.box_color {
+.box__color {
   height: 43%;
   width: 43%;
   margin: 1rem;
 }
 
 .green {
-  background-color: rgb(0, 100, 0);
+  background-color: var(--green-off-color);
   border-top-left-radius: 100%;
   border-bottom-right-radius: -100%;
 }
 
 .red {
-  background-color: rgb(100, 0, 0);
+  background-color: var(--red-off-color);
   border-bottom-left-radius: 100%;
 }
 
 .yellow {
-  background-color: rgb(100, 100, 0);
+  background-color: var(--yellow-off-color);
   border-top-right-radius: 100%;
 }
 
 .blue {
-  background-color: rgb(0, 0, 100);
+  background-color: var(--blue-off-color);
   border-bottom-right-radius: 100%;
 }
 
 .green-color {
-  background-color: rgb(0, 255, 0);
+  background-color: var(--green-color);
 }
 
 .red-color {
-  background-color: rgb(255, 0, 0);
+  background-color: var(--red-color);
 }
 
 .yellow-color {
-  background-color: rgb(255, 255, 0);
+  background-color: var(--yellow-color);
 }
 
 .blue-color {
-  background-color: rgb(0, 0, 255);
+  background-color: var(--blue-color);
 }
 
 .section_def {

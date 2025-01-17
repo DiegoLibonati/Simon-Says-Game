@@ -7,6 +7,7 @@
 
     <title>Simon Say</title>
 
+    <link rel="stylesheet" type="text/css" href="./src/index.css" />
     <link rel="stylesheet" type="text/css" href="./src/styles.css" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -22,18 +23,18 @@
     ></script>
   </head>
   <body>
-    <header>
+    <header class="header">
       <img src="./src/assets/DL.png" alt="Diego Libonati Logo" />
 
       <h2>Simon Says</h2>
     </header>
 
-    <section class="section_howToPlay">
-      <div class="section_howToPlay-title">
+    <section class="tutorial">
+      <div class="tutorial__title">
         <h2>¿How to play?</h2>
       </div>
 
-      <div class="section_howToPlay-description">
+      <div class="tutorial__description">
         <p>
           Press the start button to start playing. First the machine will play,
           wait for it to say 'Now the user plays' to play, don't be in a hurry.
@@ -44,42 +45,42 @@
       </div>
     </section>
 
-    <section class="section_start">
-      <article class="section_start_article">
-        <div class="section_start_row1">
-          <h3 class="whoPlays">Press START</h3>
+    <section class="game">
+      <article class="game__btns">
+        <div class="game__btns__header">
+          <h3 class="text__start">Press START</h3>
 
           <h3 class="score">SCORE: 0</h3>
 
           <button type="button" aria-label="start">START</button>
         </div>
 
-        <div class="section_start_row2">
-          <button type="button" class="btnDif" id="easy" aria-label="easy mode">
+        <div class="game__modes">
+          <button type="button" class="btn__mode" id="easy" aria-label="easy mode">
             EASY
           </button>
           <button
             type="button"
-            class="btnDif"
+            class="btn__mode"
             id="medium"
             aria-label="medium mode"
           >
             MEDIUM
           </button>
-          <button type="button" class="btnDif" id="hard" aria-label="hard mode">
+          <button type="button" class="btn__mode" id="hard" aria-label="hard mode">
             HARD
           </button>
         </div>
       </article>
 
-      <article class="section_container">
-        <div class="box_color green" id="green"></div>
+      <article class="game__board">
+        <div class="box__color green" id="green"></div>
 
-        <div class="box_color red" id="red"></div>
+        <div class="box__color red" id="red"></div>
 
-        <div class="box_color yellow" id="yellow"></div>
+        <div class="box__color yellow" id="yellow"></div>
 
-        <div class="box_color blue" id="blue"></div>
+        <div class="box__color blue" id="blue"></div>
       </article>
     </section>
 
