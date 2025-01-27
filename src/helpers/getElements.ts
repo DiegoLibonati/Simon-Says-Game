@@ -1,9 +1,9 @@
 export const getElements = () => ({
-  colorsBox: document.querySelectorAll(".box__color") as NodeList,
-  btnsDifficulty: document.querySelectorAll(".btn__mode") as NodeList,
+  colorsBox: document.querySelectorAll(".game__board-box") as NodeList,
+  btnsDifficulty: document.querySelectorAll(".game__modes-btn-mode") as NodeList,
   btnStart: document.querySelector(
-    ".game__btns__header button"
+    ".game__actions-header-btn-start"
   ) as HTMLButtonElement,
-  whoPlaysElement: document.querySelector(".text__start") as HTMLHeadingElement,
-  scoreElement: document.querySelector(".score") as HTMLHeadingElement,
+  whoPlaysElement: document.querySelector(".game__actions-header-text-start") as HTMLHeadingElement,
+  scoreElement: document.querySelector(".game__actions-header-text-score") as HTMLHeadingElement,
 });

@@ -1,4 +1,4 @@
-.header {
+.header-wrapper {
   display: flex;
   flex-flow: row wrap;
   align-items: center;
@@ -8,13 +8,13 @@
   background-color: var(--secondary-color);
 }
 
-.header img {
+.header-wrapper__logo {
   width: 6rem;
   height: 6rem;
   object-fit: cover;
 }
 
-.header h2 {
+.header-wrapper__title {
   font-size: 2rem;
   color: var(--white-color);
 }
@@ -28,12 +28,13 @@
   height: auto;
   margin-top: 2rem;
 }
-.tutorial__title h2 {
+
+.tutorial__header-title {
   font-size: 3rem;
   color: var(--secondary-color);
 }
 
-.tutorial__description p {
+.tutorial__content-description {
   font-size: 1.5rem;
   color: var(--secondary-color);
   margin-top: 2rem;
@@ -49,7 +50,7 @@
   margin-top: 2rem;
 }
 
-.game__btns {
+.game__actions {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -58,7 +59,7 @@
   height: auto;
 }
 
-.game__btns__header {
+.game__actions-header {
   display: flex;
   flex-flow: column wrap;
   align-items: center;
@@ -66,7 +67,13 @@
   width: 100%;
 }
 
-.game__btns__header button {
+.game__actions-header-text-start,
+.game__actions-header-text-score {
+  font-size: 2.5rem;
+  color: var(--secondary-color);
+}
+
+.game__actions-header-btn-start {
   font-size: 3rem;
   padding: 1rem;
   color: var(--primary-color);
@@ -74,11 +81,6 @@
   border: none;
   cursor: pointer;
   margin-top: 2rem;
-}
-
-.game__btns__header h3 {
-  font-size: 2.5rem;
-  color: var(--secondary-color);
 }
 
 .game__modes {
@@ -86,24 +88,24 @@
   flex-flow: row wrap;
   align-items: center;
   justify-content: center;
+  gap: 1rem;
   width: 100%;
   margin-top: 2rem;
 }
 
-.game__modes button {
+.game__modes-btn-mode {
   font-size: 3rem;
   padding: 1rem;
   color: var(--primary-color);
   background: var(--secondary-color);
   border: none;
   cursor: pointer;
-  margin-left: 1rem;
 }
 
-.game__modes h3 {
+/* .game__modes h3 {
   font-size: 2.5rem;
   color: var(--secondary-color);
-}
+} */
 
 .game__board {
   display: flex;
@@ -118,50 +120,45 @@
   margin-bottom: 2rem;
 }
 
-.box__color {
+.game__board-box {
   height: 43%;
   width: 43%;
   margin: 1rem;
 }
 
-.green {
+.game__board-box--green {
   background-color: var(--green-off-color);
   border-top-left-radius: 100%;
   border-bottom-right-radius: -100%;
 }
 
-.red {
+.game__board-box--red {
   background-color: var(--red-off-color);
   border-bottom-left-radius: 100%;
 }
 
-.yellow {
+.game__board-box--yellow {
   background-color: var(--yellow-off-color);
   border-top-right-radius: 100%;
 }
 
-.blue {
+.game__board-box--blue {
   background-color: var(--blue-off-color);
   border-bottom-right-radius: 100%;
 }
 
-.green-color {
+.game__board-box--green-color {
   background-color: var(--green-color);
 }
 
-.red-color {
+.game__board-box--red-color {
   background-color: var(--red-color);
 }
 
-.yellow-color {
+.game__board-box--yellow-color {
   background-color: var(--yellow-color);
 }
 
-.blue-color {
+.game__board-box--blue-color {
   background-color: var(--blue-color);
-}
-
-.section_def {
-  width: 100%;
-  height: 10rem;
 }
