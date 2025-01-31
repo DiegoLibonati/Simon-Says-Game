@@ -121,10 +121,10 @@ const changeColorViewOfTabletop = (
 
   const id = element.id;
 
-  element.classList.add(`game__board-box--${id}-color`);
+  element.classList.add(`game__box--${id}-color`);
 
   timeoutColorChange = setTimeout(() => {
-    element.classList.remove(`game__board-box--${id}-color`);
+    element.classList.remove(`game__box--${id}-color`);
   }, time);
 };
 
