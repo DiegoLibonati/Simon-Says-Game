@@ -1,4 +1,4 @@
-import { arraysToBeEqual } from "./arraysToBeEqual";
+import { arraysToBeEqual } from "@src/helpers/arraysToBeEqual";
 
 describe("arraysToBeEqual.ts", () => {
   describe("General Tests.", () => {

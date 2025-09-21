@@ -1,11 +1,11 @@
-import { arraysToBeEqual } from "./helpers/arraysToBeEqual";
-import { getElements } from "./helpers/getElements";
+import { arraysToBeEqual } from "@src/helpers/arraysToBeEqual";
+import { getElements } from "@src/helpers/getElements";
 
 import {
   MESSAGE_CANT_PLAY,
   MESSAGE_CANT_START,
   valuesCanPlayIA,
-} from "./constants/constants";
+} from "@src/constants/constants";
 
 // New Keys
 let score: number;

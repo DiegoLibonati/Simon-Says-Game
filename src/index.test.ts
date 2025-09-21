@@ -1,6 +1,6 @@
 import { screen } from "@testing-library/dom";
 
-import { OFFICIAL_BODY } from "../tests/jest.constants";
+import { OFFICIAL_BODY } from "@tests/jest.constants";
 
 describe("index.ts", () => {
   describe("General Tests.", () => {
