@@ -22,6 +22,7 @@ I made a website that allows you to play simon says. You can choose between 3 di
 1. Typescript
 2. CSS3
 3. HTML5
+4. Vite
 
 ## Libraries used
 
