@@ -1,0 +1,20 @@
+.header {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+  height: auto;
+  background-color: var(--secondary-color);
+}
+
+.header__logo {
+  width: 6rem;
+  height: 6rem;
+  object-fit: cover;
+}
+
+.header__title {
+  font-size: 2rem;
+  color: var(--white-color);
+}
