@@ -1,9 +1,3 @@
-import DlPng from "@src/assets/pngs/DL.png";
-
-const assets = {
-  pngs: {
-    DlPng: DlPng,
-  },
-};
+const assets = {};
 
 export default assets;
