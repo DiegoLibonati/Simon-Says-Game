@@ -47,9 +47,13 @@ describe("SimonSaysPage.ts", () => {
       expect(container).toBeInstanceOf(HTMLElement);
       expect(container.className).toBe("simon-says-page");
 
-      expect(container.querySelector(".tutorial")).toBeInTheDocument();
-      expect(container.querySelector(".game")).toBeInTheDocument();
-      expect(container.querySelector(".game__board")).toBeInTheDocument();
+      expect(
+        container.querySelector<HTMLElement>(".tutorial")
+      ).toBeInTheDocument();
+      expect(container.querySelector<HTMLElement>(".game")).toBeInTheDocument();
+      expect(
+        container.querySelector<HTMLElement>(".game__board")
+      ).toBeInTheDocument();
     });
 
     test("It should render four color boxes (green, red, yellow, blue)", () => {
@@ -58,10 +62,14 @@ describe("SimonSaysPage.ts", () => {
       expect(
         screen.getByRole("button", { name: /start/i })
       ).toBeInTheDocument();
-      expect(document.querySelectorAll(".game__box")).toHaveLength(4);
+      expect(
+        document.querySelectorAll<HTMLDivElement>(".game__box")
+      ).toHaveLength(4);
 
       ["green", "red", "yellow", "blue"].forEach((color) => {
-        expect(document.querySelector(`#${color}`)).toBeInTheDocument();
+        expect(
+          document.querySelector<HTMLDivElement>(`#${color}`)
+        ).toBeInTheDocument();
       });
     });
 
@@ -120,14 +128,15 @@ describe("SimonSaysPage.ts", () => {
       const logSpy = jest.spyOn(console, "log").mockImplementation(() => {});
       renderComponent();
 
-      const greenBox = document.querySelector("#green")!;
+      const greenBox = document.querySelector<HTMLDivElement>("#green")!;
 
       await user.click(greenBox);
 
       await new Promise((r) => setTimeout(r, 100));
 
       if (logSpy.mock.calls.length === 0) {
-        const label = document.querySelector(".game__label-start")!;
+        const label =
+          document.querySelector<HTMLHeadingElement>(".game__label-start")!;
         const labelText = label.textContent ?? "";
         expect(labelText).toMatch(/(press start|perdiste)/i);
       } else {
@@ -140,7 +149,7 @@ describe("SimonSaysPage.ts", () => {
     test("It should apply and remove color class when clicked (simulated turn)", () => {
       renderComponent();
 
-      const greenBox = document.querySelector("#green")!;
+      const greenBox = document.querySelector<HTMLDivElement>("#green")!;
       const className = "game__box--green-color";
 
       greenBox.classList.add(className);
