@@ -7,13 +7,13 @@ import { GameModeButton } from "@src/components/GameModeButton/GameModeButton";
 
 type RenderComponent = {
   container: HTMLButtonElement;
-  props: GameModeButtonProps;
+  props: { onClick: jest.Mock } & GameModeButtonProps;
 };
 
 const renderComponent = (
-  custom?: Partial<GameModeButtonProps>
+  custom?: Partial<{ onClick: jest.Mock } & GameModeButtonProps>
 ): RenderComponent => {
-  const props: GameModeButtonProps = {
+  const props = {
     id: "easyMode",
     ariaLabel: "select easy mode",
     children: "<span>Easy Mode</span>",
