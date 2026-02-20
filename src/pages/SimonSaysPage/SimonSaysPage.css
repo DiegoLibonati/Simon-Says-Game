@@ -19,12 +19,12 @@
 
 .tutorial__title {
   font-size: 3rem;
-  color: var(--secondary-color);
+  color: var(--color-secondary);
 }
 
 .tutorial__description {
   font-size: 1.5rem;
-  color: var(--secondary-color);
+  color: var(--color-secondary);
   margin-top: 2rem;
 }
 
@@ -58,14 +58,14 @@
 .game__label-start,
 .game__score {
   font-size: 2.5rem;
-  color: var(--secondary-color);
+  color: var(--color-secondary);
 }
 
 .game__btn-start {
   font-size: 3rem;
   padding: 1rem;
-  color: var(--primary-color);
-  background: var(--secondary-color);
+  color: var(--color-primary);
+  background: var(--color-secondary);
   border: none;
   cursor: pointer;
   margin-top: 2rem;
@@ -83,7 +83,7 @@
 
 /* .game__modes h3 {
   font-size: 2.5rem;
-  color: var(--secondary-color);
+  color: var(--color-secondary);
 } */
 
 .game__board {
@@ -93,7 +93,7 @@
   align-items: center;
   width: 30rem;
   height: 30rem;
-  background: var(--black-color);
+  background: var(--color-black);
   border-radius: 50%;
   margin-top: 2rem;
   margin-bottom: 2rem;
@@ -106,38 +106,38 @@
 }
 
 .game__box--green {
-  background-color: var(--green-off-color);
+  background-color: var(--color-green-off);
   border-top-left-radius: 100%;
   border-bottom-right-radius: -100%;
 }
 
 .game__box--red {
-  background-color: var(--red-off-color);
+  background-color: var(--color-red-off);
   border-bottom-left-radius: 100%;
 }
 
 .game__box--yellow {
-  background-color: var(--yellow-off-color);
+  background-color: var(--color-yellow-off);
   border-top-right-radius: 100%;
 }
 
 .game__box--blue {
-  background-color: var(--blue-off-color);
+  background-color: var(--color-blue-off);
   border-bottom-right-radius: 100%;
 }
 
 .game__box--green-color {
-  background-color: var(--green-color);
+  background-color: var(--color-green);
 }
 
 .game__box--red-color {
-  background-color: var(--red-color);
+  background-color: var(--color-red);
 }
 
 .game__box--yellow-color {
-  background-color: var(--yellow-color);
+  background-color: var(--color-yellow);
 }
 
 .game__box--blue-color {
-  background-color: var(--blue-color);
+  background-color: var(--color-blue);
 }

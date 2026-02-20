@@ -1,8 +1,8 @@
 .game-mode-button {
   font-size: 3rem;
   padding: 1rem;
-  color: var(--primary-color);
-  background: var(--secondary-color);
+  color: var(--color-primary);
+  background: var(--color-secondary);
   border: none;
   cursor: pointer;
 }

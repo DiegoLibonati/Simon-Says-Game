@@ -1,14 +1,15 @@
-import { GameModeButtonProps } from "@src/entities/props";
+import type { GameModeButtonProps } from "@/types/props";
+import type { GameModeButtonComponent } from "@/types/components";
 
-import "@src/components/GameModeButton/GameModeButton.css";
+import "@/components/GameModeButton/GameModeButton.css";
 
 export const GameModeButton = ({
   id,
   ariaLabel,
   children,
   onClick,
-}: GameModeButtonProps): HTMLButtonElement => {
-  const button = document.createElement("button");
+}: GameModeButtonProps): GameModeButtonComponent => {
+  const button = document.createElement("button") as GameModeButtonComponent;
   button.id = id;
   button.type = "button";
   button.className = "game-mode-button";
@@ -17,6 +18,10 @@ export const GameModeButton = ({
   button.innerHTML = children ?? "";
 
   button.addEventListener("click", onClick);
+
+  button.cleanup = (): void => {
+    button.removeEventListener("click", onClick);
+  };
 
   return button;
 };

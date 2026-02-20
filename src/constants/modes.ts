@@ -1,4 +1,4 @@
-import { Mode } from "@src/entities/app";
+import type { Mode } from "@/types/app";
 
 const modes: Mode[] = [
   { id: "easy", name: "easy", timeColorDelay: 1000, timeColorChange: 500 },
@@ -7,4 +7,3 @@ const modes: Mode[] = [
 ];
 
 export default modes;
-

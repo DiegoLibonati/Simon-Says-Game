@@ -1,198 +1,31 @@
-import { GameModeButton } from "@src/components/GameModeButton/GameModeButton";
+import type { Page } from "@/types/pages";
+import type { GameModeButtonComponent } from "@/types/components";
 
-import modes from "@src/constants/modes";
+import { GameModeButton } from "@/components/GameModeButton/GameModeButton";
+
+import modes from "@/constants/modes";
 import {
   MESSAGE_CANT_PLAY,
   MESSAGE_CANT_START,
   valuesCanPlayIA,
-} from "@src/constants/vars";
-import { arraysToBeEqual } from "@src/helpers/arraysToBeEqual";
+} from "@/constants/vars";
+import { arraysToBeEqual } from "@/helpers/arraysToBeEqual";
 
-import "@src/pages/SimonSaysPage/SimonSaysPage.css";
-
-let score: number;
-
-let userPlaying: boolean;
-let iaPlaying: boolean;
-
-let arrayUser: string[];
-let arrayIA: string[];
-
-let timeColorDelay: number;
-let timeColorChange: number;
-
-let timeoutColorChange: NodeJS.Timeout | null;
-let timeoutNextPlay: NodeJS.Timeout | null;
-
-const handleStartGame = (
-  timeColorDelay: number = 1000,
-  timeColorChange: number = 500
-): void => {
-  if (userPlaying || iaPlaying) return console.log(MESSAGE_CANT_START);
-
-  handleSetInitialValues(timeColorDelay, timeColorChange);
-
-  iaPlaying = true;
-  whoPlays();
-};
-
-const handleSetInitialValues = (
-  delayValue: number = 1000,
-  changeValue: number = 500
-): void => {
-  const whoPlaysElement =
-    document.querySelector<HTMLHeadingElement>(".game__label-start");
-  const scoreElement =
-    document.querySelector<HTMLHeadingElement>(".game__score");
-
-  score = 0;
-  userPlaying = false;
-  iaPlaying = false;
-
-  arrayUser = [];
-  arrayIA = [];
-
-  timeColorDelay = delayValue;
-  timeColorChange = changeValue;
-
-  whoPlaysElement!.innerHTML = `JUEGA IA`;
-  scoreElement!.innerHTML = `SCORE: ${score}`;
-
-  if (timeoutColorChange) clearTimeout(timeoutColorChange);
-  if (timeoutNextPlay) clearTimeout(timeoutNextPlay);
-
-  timeoutColorChange = null;
-  timeoutNextPlay = null;
-};
-
-const handleSelectDifficulty = (
-  _: Event,
-  timeColorDelay: number,
-  timeColorChange: number
-): void => {
-  if (userPlaying || iaPlaying) return console.log(MESSAGE_CANT_START);
-
-  handleStartGame(timeColorDelay, timeColorChange);
-};
-
-const handleUserPlay = (e: Event): void => {
-  if (iaPlaying || (!userPlaying && !iaPlaying))
-    return console.log(MESSAGE_CANT_PLAY);
-
-  const target = e.currentTarget as HTMLElement;
-  const itemId = target.id;
-
-  changeColorViewOfTabletop(target, 100);
-
-  arrayUser.push(itemId);
-
-  if (arrayUser.length === arrayIA.length) {
-    userPlaying = false;
-    resultValidate();
-  }
-};
-
-const resultValidate = () => {
-  const whoPlaysElement =
-    document.querySelector<HTMLHeadingElement>(".game__label-start");
-  const scoreElement =
-    document.querySelector<HTMLHeadingElement>(".game__score");
-
-  let result = arraysToBeEqual(arrayIA, arrayUser);
-
-  if (timeoutNextPlay) clearTimeout(timeoutNextPlay);
-
-  if (!result) {
-    whoPlaysElement!.innerHTML = `PERDISTE`;
-    iaPlaying = false;
-    userPlaying = false;
-    return;
-  }
-
-  timeoutNextPlay = setTimeout(() => {
-    score++;
-    scoreElement!.innerHTML = `SCORE: ${score}`;
-    iaPlaying = true;
-    whoPlays();
-  }, 500);
-};
-
-const changeColorViewOfTabletop = (
-  element: HTMLElement,
-  time: number
-): void => {
-  if (timeoutColorChange) clearTimeout(timeoutColorChange);
-
-  const id = element.id;
-
-  element.classList.add(`game__box--${id}-color`);
-
-  timeoutColorChange = setTimeout(() => {
-    element.classList.remove(`game__box--${id}-color`);
-  }, time);
-};
+import "@/pages/SimonSaysPage/SimonSaysPage.css";
 
 const iaSelectColorToPlay = (): string => {
   const randomColor = Math.floor(Math.random() * valuesCanPlayIA.length);
-
-  return valuesCanPlayIA[randomColor];
+  return valuesCanPlayIA[randomColor]!;
 };
 
-const iaPlay = async (
-  timeColorDelay: number,
-  timeColorChange: number
-): Promise<void> => {
-  const colorsBox = document.querySelectorAll<HTMLDivElement>(".game__box");
-  const iaPickColor = iaSelectColorToPlay();
-
-  arrayIA.push(iaPickColor);
-
-  for (let i = 0; i < arrayIA.length; i++) {
-    colorsBox.forEach((colorBox) => {
-      const box = colorBox as HTMLElement;
-      if (box.id === arrayIA[i]) {
-        changeColorViewOfTabletop(box, timeColorChange);
-      }
-    });
-
-    await delay(timeColorDelay);
-  }
-};
-
-const whoPlays = (): void => {
-  const whoPlaysElement =
-    document.querySelector<HTMLHeadingElement>(".game__label-start");
-
-  if (timeoutNextPlay) clearTimeout(timeoutNextPlay);
-
-  // Juega el usuario
-  if (userPlaying && !iaPlaying) {
-    whoPlaysElement!.innerHTML = `ITS YOUR TURN!`;
-    arrayUser = [];
-    return;
-  }
-
-  // Juega la maquina
-  whoPlaysElement!.innerHTML = `IA PLAYS`;
-
-  iaPlay(timeColorDelay!, timeColorChange!);
-
-  iaPlaying = false;
-
-  timeoutNextPlay = setTimeout(() => {
-    userPlaying = true;
-    whoPlays();
-  }, timeColorDelay! * arrayUser.length + 1);
-};
-
-const delay = (amount: number) => {
+const delay = (amount: number): Promise<void> => {
   return new Promise((resolve) => {
     setTimeout(resolve, amount);
   });
 };
 
-export const SimonSaysPage = (): HTMLElement => {
-  const main = document.createElement("main");
+export const SimonSaysPage = (): Page => {
+  const main = document.createElement("main") as Page;
   main.className = "simon-says-page";
 
   main.innerHTML = `
@@ -207,7 +40,7 @@ export const SimonSaysPage = (): HTMLElement => {
         wait for it to say 'Now the user plays' to play, don't be in a hurry.
         Repeat the sequence of colors, continue until the computer explodes or
         you lose, surely you lose. (If you want to change difficulty of the
-        game you need tou lose first). Good Luck.
+        game you need to lose first). Good Luck.
         </p>
       </div>
     </section>
@@ -243,23 +76,237 @@ export const SimonSaysPage = (): HTMLElement => {
   const btnStart = main.querySelector<HTMLButtonElement>(".game__btn-start");
   const colorsBox = main.querySelectorAll<HTMLDivElement>(".game__box");
 
+  let score = 0;
+  let userPlaying = false;
+  let iaPlaying = false;
+  let arrayUser: string[] = [];
+  let arrayIA: string[] = [];
+  let timeColorDelay = 1000;
+  let timeColorChange = 500;
+  let timeoutColorChange: number | null = null;
+  let timeoutNextPlay: number | null = null;
+
+  const modeButtons: GameModeButtonComponent[] = [];
+
+  const handleStartGame = (
+    timeColorDelayParam = 1000,
+    timeColorChangeParam = 500
+  ): void => {
+    if (userPlaying || iaPlaying) {
+      alert(MESSAGE_CANT_START);
+      return;
+    }
+
+    handleSetInitialValues(timeColorDelayParam, timeColorChangeParam);
+
+    iaPlaying = true;
+    whoPlays();
+  };
+
+  const handleSetInitialValues = (
+    delayValue = 1000,
+    changeValue = 500
+  ): void => {
+    const whoPlaysElement =
+      main.querySelector<HTMLHeadingElement>(".game__label-start");
+    const scoreElement = main.querySelector<HTMLHeadingElement>(".game__score");
+
+    score = 0;
+    userPlaying = false;
+    iaPlaying = false;
+
+    arrayUser = [];
+    arrayIA = [];
+
+    timeColorDelay = delayValue;
+    timeColorChange = changeValue;
+
+    if (whoPlaysElement) whoPlaysElement.innerHTML = "JUEGA IA";
+    if (scoreElement) scoreElement.innerHTML = `SCORE: ${score}`;
+
+    if (timeoutColorChange !== null) {
+      clearTimeout(timeoutColorChange);
+      timeoutColorChange = null;
+    }
+    if (timeoutNextPlay !== null) {
+      clearTimeout(timeoutNextPlay);
+      timeoutNextPlay = null;
+    }
+  };
+
+  const handleSelectDifficulty = (
+    _: Event,
+    timeColorDelayParam: number,
+    timeColorChangeParam: number
+  ): void => {
+    if (userPlaying || iaPlaying) {
+      alert(MESSAGE_CANT_START);
+      return;
+    }
+
+    handleStartGame(timeColorDelayParam, timeColorChangeParam);
+  };
+
+  const handleUserPlay = (e: Event): void => {
+    if (!userPlaying) {
+      alert(MESSAGE_CANT_PLAY);
+      return;
+    }
+
+    const target = e.currentTarget as HTMLElement;
+    const itemId = target.id;
+
+    changeColorViewOfTabletop(target, 100);
+
+    arrayUser.push(itemId);
+
+    if (arrayUser.length === arrayIA.length) {
+      userPlaying = false;
+      resultValidate();
+    }
+  };
+
+  const resultValidate = (): void => {
+    const whoPlaysElement =
+      main.querySelector<HTMLHeadingElement>(".game__label-start");
+    const scoreElement = main.querySelector<HTMLHeadingElement>(".game__score");
+
+    const result = arraysToBeEqual(arrayIA, arrayUser);
+
+    if (timeoutNextPlay !== null) {
+      clearTimeout(timeoutNextPlay);
+      timeoutNextPlay = null;
+    }
+
+    if (!result) {
+      if (whoPlaysElement) whoPlaysElement.innerHTML = "PERDISTE";
+      iaPlaying = false;
+      userPlaying = false;
+      return;
+    }
+
+    timeoutNextPlay = setTimeout(() => {
+      score++;
+      if (scoreElement) scoreElement.innerHTML = `SCORE: ${score}`;
+      iaPlaying = true;
+      whoPlays();
+    }, 500);
+  };
+
+  const changeColorViewOfTabletop = (
+    element: HTMLElement,
+    time: number
+  ): void => {
+    if (timeoutColorChange !== null) {
+      clearTimeout(timeoutColorChange);
+      timeoutColorChange = null;
+    }
+
+    const id = element.id;
+
+    element.classList.add(`game__box--${id}-color`);
+
+    timeoutColorChange = setTimeout(() => {
+      element.classList.remove(`game__box--${id}-color`);
+      timeoutColorChange = null;
+    }, time);
+  };
+
+  const iaPlay = async (
+    timeColorDelayParam: number,
+    timeColorChangeParam: number
+  ): Promise<void> => {
+    const colorsBoxElements =
+      main.querySelectorAll<HTMLDivElement>(".game__box");
+    const iaPickColor = iaSelectColorToPlay();
+
+    arrayIA.push(iaPickColor);
+
+    for (const colorId of arrayIA) {
+      colorsBoxElements.forEach((colorBox) => {
+        if (colorBox.id === colorId) {
+          changeColorViewOfTabletop(colorBox, timeColorChangeParam);
+        }
+      });
+
+      await delay(timeColorDelayParam);
+    }
+  };
+
+  const whoPlays = (): void => {
+    const whoPlaysElement =
+      main.querySelector<HTMLHeadingElement>(".game__label-start");
+
+    if (timeoutNextPlay !== null) {
+      clearTimeout(timeoutNextPlay);
+      timeoutNextPlay = null;
+    }
+
+    if (userPlaying && !iaPlaying) {
+      if (whoPlaysElement) whoPlaysElement.innerHTML = "ITS YOUR TURN!";
+      arrayUser = [];
+      return;
+    }
+
+    if (whoPlaysElement) whoPlaysElement.innerHTML = "IA PLAYS";
+
+    void iaPlay(timeColorDelay, timeColorChange);
+
+    iaPlaying = false;
+
+    timeoutNextPlay = setTimeout(
+      () => {
+        userPlaying = true;
+        whoPlays();
+      },
+      timeColorDelay * arrayIA.length + 1000
+    );
+  };
+
   modes.forEach((mode) => {
     const gameModeButton = GameModeButton({
       id: mode.id,
       ariaLabel: `${mode.name} mode`,
       children: mode.name.toUpperCase(),
-      onClick: (e) =>
-        handleSelectDifficulty(e, mode.timeColorDelay, mode.timeColorChange),
+      onClick: (e) => {
+        handleSelectDifficulty(e, mode.timeColorDelay, mode.timeColorChange);
+      },
     });
 
+    modeButtons.push(gameModeButton);
     gameModes?.append(gameModeButton);
   });
 
-  btnStart?.addEventListener("click", () => handleStartGame());
+  const handleStartClick = (): void => {
+    handleStartGame();
+  };
 
-  colorsBox.forEach((colorBox) =>
-    colorBox.addEventListener("click", handleUserPlay)
-  );
+  btnStart?.addEventListener("click", handleStartClick);
+
+  colorsBox.forEach((colorBox) => {
+    colorBox.addEventListener("click", handleUserPlay);
+  });
+
+  main.cleanup = (): void => {
+    if (timeoutColorChange !== null) {
+      clearTimeout(timeoutColorChange);
+      timeoutColorChange = null;
+    }
+    if (timeoutNextPlay !== null) {
+      clearTimeout(timeoutNextPlay);
+      timeoutNextPlay = null;
+    }
+
+    btnStart?.removeEventListener("click", handleStartClick);
+
+    colorsBox.forEach((colorBox) => {
+      colorBox.removeEventListener("click", handleUserPlay);
+    });
+
+    modeButtons.forEach((button) => {
+      button.cleanup?.();
+    });
+  };
 
   return main;
 };
