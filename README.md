@@ -31,7 +31,7 @@ I made a website that allows you to play simon says. You can choose between 3 di
 #### Dependencies
 
 ```
-There are no dependencies.
+No production dependencies - Pure Vanilla TypeScript
 ```
 
 #### devDependencies
@@ -75,3 +75,7 @@ For coverage report:
 ```bash
 npm run test:coverage
 ```
+
+## Known Issues
+
+None at the moment.
