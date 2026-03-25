@@ -1,6 +1,6 @@
 .game-mode-button {
-  font-size: 3rem;
-  padding: 1rem;
+  font-size: 1.875rem;
+  padding: 0.625rem;
   color: var(--color-primary);
   background: var(--color-secondary);
   border: none;

@@ -52,7 +52,7 @@ export const SimonSaysPage = (): Page => {
 
           <h3 class="game__score">SCORE: 0</h3>
 
-          <button type="button" aria-label="start" class="game__btn-start">
+          <button type="button" aria-label="Start game" class="game__btn-start">
             START
           </button>
         </div>
@@ -61,13 +61,13 @@ export const SimonSaysPage = (): Page => {
       </article>
 
       <article class="game__board">
-        <div class="game__box game__box--green" id="green"></div>
+        <div class="game__box game__box--green" id="green" aria-label="Green"></div>
 
-        <div class="game__box game__box--red" id="red"></div>
+        <div class="game__box game__box--red" id="red" aria-label="Red"></div>
 
-        <div class="game__box game__box--yellow" id="yellow"></div>
+        <div class="game__box game__box--yellow" id="yellow" aria-label="Yellow"></div>
 
-        <div class="game__box game__box--blue" id="blue"></div>
+        <div class="game__box game__box--blue" id="blue" aria-label="Blue"></div>
       </article>
     </section>
   `;

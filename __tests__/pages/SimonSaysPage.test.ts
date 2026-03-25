@@ -49,7 +49,7 @@ describe("SimonSaysPage", () => {
   it("should render start button", () => {
     renderPage();
 
-    const startButton = screen.getByRole("button", { name: "start" });
+    const startButton = screen.getByRole("button", { name: "Start game" });
     expect(startButton).toBeInTheDocument();
     expect(startButton.textContent.trim()).toBe("START");
   });
@@ -86,7 +86,7 @@ describe("SimonSaysPage", () => {
     const user = userEvent.setup({ delay: null });
     renderPage();
 
-    const startButton = screen.getByRole("button", { name: "start" });
+    const startButton = screen.getByRole("button", { name: "Start game" });
     await user.click(startButton);
 
     const label =
@@ -98,7 +98,7 @@ describe("SimonSaysPage", () => {
     const user = userEvent.setup({ delay: null });
     renderPage();
 
-    const startButton = screen.getByRole("button", { name: "start" });
+    const startButton = screen.getByRole("button", { name: "Start game" });
     await user.click(startButton);
 
     const score = document.querySelector<HTMLHeadingElement>(".game__score");
@@ -111,7 +111,7 @@ describe("SimonSaysPage", () => {
 
     renderPage();
 
-    const startButton = screen.getByRole("button", { name: "start" });
+    const startButton = screen.getByRole("button", { name: "Start game" });
     await user.click(startButton);
 
     await Promise.resolve();
@@ -144,7 +144,7 @@ describe("SimonSaysPage", () => {
     const user = userEvent.setup({ delay: null });
     renderPage();
 
-    const startButton = screen.getByRole("button", { name: "start" });
+    const startButton = screen.getByRole("button", { name: "Start game" });
     await user.click(startButton);
 
     jest.advanceTimersByTime(3000);

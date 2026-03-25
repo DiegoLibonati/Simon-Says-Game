@@ -17,21 +17,21 @@
 
   /* Typography */
   --font-family-primary: "Titillium Web", Helvetica, sans-serif;
-  --font-size-base: 10px;
-  --font-size-sm: 0.875rem;
-  --font-size-lg: 1.25rem;
-  --font-size-xl: 1.5rem;
+  --font-size-base: 16px;
+  --font-size-sm: 0.5469rem;
+  --font-size-lg: 0.7813rem;
+  --font-size-xl: 0.9375rem;
 
   /* Spacing */
-  --spacing-xs: 0.25rem;
-  --spacing-sm: 0.5rem;
-  --spacing-md: 1rem;
-  --spacing-lg: 1.5rem;
-  --spacing-xl: 2rem;
+  --spacing-xs: 0.1563rem;
+  --spacing-sm: 0.3125rem;
+  --spacing-md: 0.625rem;
+  --spacing-lg: 0.9375rem;
+  --spacing-xl: 1.25rem;
 
   /* Layout */
-  --header-height: 20rem;
-  --footer-height: 20rem;
+  --header-height: 12.5rem;
+  --footer-height: 12.5rem;
 }
 
 *,
@@ -97,12 +97,12 @@ a {
 }
 
 .header__logo {
-  width: 6rem;
-  height: 6rem;
+  width: 3.75rem;
+  height: 3.75rem;
   object-fit: cover;
 }
 
 .header__title {
-  font-size: 2rem;
+  font-size: 1.25rem;
   color: var(--color-white);
 }
