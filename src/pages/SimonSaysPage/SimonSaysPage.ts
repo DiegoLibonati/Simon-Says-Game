@@ -1,7 +1,7 @@
 import type { Page } from "@/types/pages";
 import type { GameModeButtonComponent } from "@/types/components";
 
-import { GameModeButton } from "@/components/GameModeButton/GameModeButton";
+import GameModeButton from "@/components/GameModeButton/GameModeButton";
 
 import modes from "@/constants/modes";
 import {
@@ -24,7 +24,7 @@ const delay = (amount: number): Promise<void> => {
   });
 };
 
-export const SimonSaysPage = (): Page => {
+const SimonSaysPage = (): Page => {
   const main = document.createElement("main") as Page;
   main.className = "simon-says-page";
 
@@ -310,3 +310,5 @@ export const SimonSaysPage = (): Page => {
 
   return main;
 };
+
+export default SimonSaysPage;

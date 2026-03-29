@@ -4,7 +4,7 @@ import userEvent from "@testing-library/user-event";
 import type { GameModeButtonProps } from "@/types/props";
 import type { GameModeButtonComponent } from "@/types/components";
 
-import { GameModeButton } from "@/components/GameModeButton/GameModeButton";
+import GameModeButton from "@/components/GameModeButton/GameModeButton";
 
 const renderComponent = (
   props: GameModeButtonProps

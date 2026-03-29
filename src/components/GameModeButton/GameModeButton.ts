@@ -3,7 +3,7 @@ import type { GameModeButtonComponent } from "@/types/components";
 
 import "@/components/GameModeButton/GameModeButton.css";
 
-export const GameModeButton = ({
+const GameModeButton = ({
   id,
   ariaLabel,
   children,
@@ -25,3 +25,5 @@ export const GameModeButton = ({
 
   return button;
 };
+
+export default GameModeButton;
