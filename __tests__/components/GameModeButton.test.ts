@@ -6,73 +6,112 @@ import type { GameModeButtonComponent } from "@/types/components";
 
 import GameModeButton from "@/components/GameModeButton/GameModeButton";
 
-const renderComponent = (
-  props: GameModeButtonProps
-): GameModeButtonComponent => {
-  const container = GameModeButton(props);
-  document.body.appendChild(container);
-  return container;
+const mockOnClick = jest.fn();
+
+const defaultProps: GameModeButtonProps = {
+  id: "easy",
+  ariaLabel: "Easy mode",
+  children: "EASY",
+  onClick: mockOnClick,
 };
 
-describe("GameModeButton Component", () => {
+const renderComponent = (
+  props: Partial<GameModeButtonProps> = {}
+): GameModeButtonComponent => {
+  const element = GameModeButton({ ...defaultProps, ...props });
+  document.body.appendChild(element);
+  return element;
+};
+
+describe("GameModeButton", () => {
   afterEach(() => {
     document.body.innerHTML = "";
   });
 
-  const mockOnClick = jest.fn();
+  describe("rendering", () => {
+    it("should render a button element", () => {
+      renderComponent();
+      expect(
+        screen.getByRole("button", { name: "Easy mode" })
+      ).toBeInTheDocument();
+    });
 
-  const defaultProps: GameModeButtonProps = {
-    id: "easy",
-    ariaLabel: "easy mode",
-    children: "EASY",
-    onClick: mockOnClick,
-  };
+    it("should have the correct id", () => {
+      renderComponent();
+      expect(screen.getByRole("button", { name: "Easy mode" })).toHaveAttribute(
+        "id",
+        "easy"
+      );
+    });
 
-  it("should render button with correct attributes", () => {
-    renderComponent(defaultProps);
+    it("should have the game-mode-button class", () => {
+      renderComponent();
+      expect(screen.getByRole("button", { name: "Easy mode" })).toHaveClass(
+        "game-mode-button"
+      );
+    });
 
-    const button = screen.getByRole("button", { name: "easy mode" });
-    expect(button).toBeInTheDocument();
-    expect(button).toHaveAttribute("id", "easy");
-    expect(button).toHaveAttribute("type", "button");
-    expect(button).toHaveClass("game-mode-button");
-    expect(button.innerHTML).toBe("EASY");
+    it("should have type button", () => {
+      renderComponent();
+      expect(screen.getByRole("button", { name: "Easy mode" })).toHaveAttribute(
+        "type",
+        "button"
+      );
+    });
+
+    it("should display children as text content", () => {
+      renderComponent();
+      expect(
+        screen.getByRole("button", { name: "Easy mode" })
+      ).toHaveTextContent("EASY");
+    });
+
+    it("should render empty content when children is not provided", () => {
+      const element = GameModeButton({
+        id: "easy",
+        ariaLabel: "Easy mode",
+        onClick: mockOnClick,
+      });
+      document.body.appendChild(element);
+      expect(
+        screen.getByRole("button", { name: "Easy mode" })
+      ).toHaveTextContent("");
+    });
   });
 
-  it("should call onClick handler when clicked", async () => {
-    const user = userEvent.setup();
-    renderComponent(defaultProps);
+  describe("behavior", () => {
+    it("should call onClick when clicked", async () => {
+      const user = userEvent.setup();
+      renderComponent();
+      await user.click(screen.getByRole("button", { name: "Easy mode" }));
+      expect(mockOnClick).toHaveBeenCalledTimes(1);
+    });
 
-    const button = screen.getByRole("button", { name: "easy mode" });
-    await user.click(button);
+    it("should not call onClick before being clicked", () => {
+      renderComponent();
+      expect(mockOnClick).not.toHaveBeenCalled();
+    });
 
-    expect(mockOnClick).toHaveBeenCalledTimes(1);
+    it("should call onClick with the mouse event", async () => {
+      const user = userEvent.setup();
+      renderComponent();
+      await user.click(screen.getByRole("button", { name: "Easy mode" }));
+      expect(mockOnClick).toHaveBeenCalledWith(expect.any(MouseEvent));
+    });
   });
 
-  it("should render different game modes", () => {
-    const hardProps: GameModeButtonProps = {
-      id: "hard",
-      ariaLabel: "hard mode",
-      children: "HARD",
-      onClick: mockOnClick,
-    };
+  describe("cleanup", () => {
+    it("should have a cleanup method", () => {
+      const element = renderComponent();
+      expect(element.cleanup).toBeDefined();
+    });
 
-    renderComponent(hardProps);
-
-    const button = screen.getByRole("button", { name: "hard mode" });
-    expect(button).toHaveAttribute("id", "hard");
-    expect(button.innerHTML).toBe("HARD");
-  });
-
-  it("should cleanup event listener", async () => {
-    const user = userEvent.setup();
-    const button = renderComponent(defaultProps);
-
-    button.cleanup?.();
-
-    const buttonElement = screen.getByRole("button", { name: "easy mode" });
-    await user.click(buttonElement);
-
-    expect(mockOnClick).not.toHaveBeenCalled();
+    it("should stop calling onClick after cleanup", async () => {
+      const user = userEvent.setup();
+      const element = renderComponent();
+      element.cleanup?.();
+      await user.click(screen.getByRole("button", { name: "Easy mode" }));
+      expect(mockOnClick).not.toHaveBeenCalled();
+    });
   });
 });

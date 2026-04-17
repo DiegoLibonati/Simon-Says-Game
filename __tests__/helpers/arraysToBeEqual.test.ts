@@ -1,59 +1,54 @@
 import { arraysToBeEqual } from "@/helpers/arraysToBeEqual";
 
 describe("arraysToBeEqual", () => {
-  it("should return true for equal arrays", () => {
-    const arr1 = ["red", "blue", "green"];
-    const arr2 = ["red", "blue", "green"];
+  describe("when arrays are equal", () => {
+    it("should return true for identical arrays", () => {
+      expect(arraysToBeEqual(["green", "red"], ["green", "red"])).toBe(true);
+    });
 
-    expect(arraysToBeEqual(arr1, arr2)).toBe(true);
+    it("should return true for single-element equal arrays", () => {
+      expect(arraysToBeEqual(["blue"], ["blue"])).toBe(true);
+    });
+
+    it("should return true for multi-element equal arrays", () => {
+      expect(
+        arraysToBeEqual(
+          ["green", "yellow", "red", "blue"],
+          ["green", "yellow", "red", "blue"]
+        )
+      ).toBe(true);
+    });
   });
 
-  it("should return false for arrays with different lengths", () => {
-    const arr1 = ["red", "blue"];
-    const arr2 = ["red", "blue", "green"];
+  describe("when arrays are not equal", () => {
+    it("should return false when last element differs", () => {
+      expect(arraysToBeEqual(["green", "red"], ["green", "blue"])).toBe(false);
+    });
 
-    expect(arraysToBeEqual(arr1, arr2)).toBe(false);
+    it("should return false when order differs", () => {
+      expect(arraysToBeEqual(["green", "red"], ["red", "green"])).toBe(false);
+    });
+
+    it("should return false when first array is longer", () => {
+      expect(arraysToBeEqual(["green", "red"], ["green"])).toBe(false);
+    });
+
+    it("should return false when second array is longer", () => {
+      expect(arraysToBeEqual(["green"], ["green", "red"])).toBe(false);
+    });
   });
 
-  it("should return false for arrays with different elements", () => {
-    const arr1 = ["red", "blue", "green"];
-    const arr2 = ["red", "yellow", "green"];
+  describe("edge cases", () => {
+    it("should return false for two empty arrays", () => {
+      expect(arraysToBeEqual([], [])).toBe(false);
+    });
 
-    expect(arraysToBeEqual(arr1, arr2)).toBe(false);
-  });
+    it("should return false when first array is empty", () => {
+      expect(arraysToBeEqual([], ["green"])).toBe(false);
+    });
 
-  it("should return false for arrays with same elements in different order", () => {
-    const arr1 = ["red", "blue", "green"];
-    const arr2 = ["blue", "red", "green"];
-
-    expect(arraysToBeEqual(arr1, arr2)).toBe(false);
-  });
-
-  it("should return false for empty arrays", () => {
-    const arr1: string[] = [];
-    const arr2: string[] = [];
-
-    expect(arraysToBeEqual(arr1, arr2)).toBe(false);
-  });
-
-  it("should return false when one array is empty", () => {
-    const arr1 = ["red"];
-    const arr2: string[] = [];
-
-    expect(arraysToBeEqual(arr1, arr2)).toBe(false);
-  });
-
-  it("should return true for single element equal arrays", () => {
-    const arr1 = ["red"];
-    const arr2 = ["red"];
-
-    expect(arraysToBeEqual(arr1, arr2)).toBe(true);
-  });
-
-  it("should return false for single element different arrays", () => {
-    const arr1 = ["red"];
-    const arr2 = ["blue"];
-
-    expect(arraysToBeEqual(arr1, arr2)).toBe(false);
+    it("should return false when second array is empty", () => {
+      expect(arraysToBeEqual(["green"], [])).toBe(false);
+    });
   });
 });

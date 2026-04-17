@@ -11,7 +11,7 @@ import {
 } from "@/constants/vars";
 import { arraysToBeEqual } from "@/helpers/arraysToBeEqual";
 
-import "@/pages/SimonSaysPage/SimonSaysPage.css";
+import "@/pages/ChromaEchoPage/ChromaEchoPage.css";
 
 const iaSelectColorToPlay = (): string => {
   const randomColor = Math.floor(Math.random() * valuesCanPlayIA.length);
@@ -24,9 +24,9 @@ const delay = (amount: number): Promise<void> => {
   });
 };
 
-const SimonSaysPage = (): Page => {
+const ChromaEchoPage = (): Page => {
   const main = document.createElement("main") as Page;
-  main.className = "simon-says-page";
+  main.className = "chroma-echo-page";
 
   main.innerHTML = `
     <section class="tutorial">
@@ -311,4 +311,4 @@ const SimonSaysPage = (): Page => {
   return main;
 };
 
-export default SimonSaysPage;
+export default ChromaEchoPage;
