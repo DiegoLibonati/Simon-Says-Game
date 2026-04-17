@@ -9,6 +9,8 @@ const config = {
   testMatch: ["**/*.test.ts", "**/*.spec.ts"],
   moduleNameMapper: {
     "\\.(css|scss)$": "<rootDir>/__tests__/__mocks__/style.mock.ts",
+    "\\.(png|jpg|jpeg|gif|svg|webp)$":
+      "<rootDir>/__tests__/__mocks__/file.mock.ts",
     "^@/(.*)$": "<rootDir>/src/$1",
     "^@tests/(.*)$": "<rootDir>/__tests__/$1",
   },
