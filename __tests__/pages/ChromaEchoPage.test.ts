@@ -9,6 +9,15 @@ import { MESSAGE_CANT_PLAY, MESSAGE_CANT_START } from "@/constants/vars";
 
 import { mockModes } from "@tests/__mocks__/modes.mock";
 
+jest.mock("@/constants/modes", () => {
+  const mockData = jest.requireActual("@tests/__mocks__/modes.mock");
+  const { mockModes } = mockData;
+  return {
+    __esModule: true,
+    default: mockModes,
+  };
+});
+
 const renderPage = (): Page => {
   const element = ChromaEchoPage();
   document.body.appendChild(element);
