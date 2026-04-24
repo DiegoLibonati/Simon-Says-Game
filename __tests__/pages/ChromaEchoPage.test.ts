@@ -80,10 +80,10 @@ describe("ChromaEchoPage", () => {
 
     it("should render color boxes with correct ids", () => {
       const page = renderPage();
-      expect(page.querySelector("#green")).toBeInTheDocument();
-      expect(page.querySelector("#red")).toBeInTheDocument();
-      expect(page.querySelector("#yellow")).toBeInTheDocument();
-      expect(page.querySelector("#blue")).toBeInTheDocument();
+      expect(page.querySelector<HTMLDivElement>("#green")).toBeInTheDocument();
+      expect(page.querySelector<HTMLDivElement>("#red")).toBeInTheDocument();
+      expect(page.querySelector<HTMLDivElement>("#yellow")).toBeInTheDocument();
+      expect(page.querySelector<HTMLDivElement>("#blue")).toBeInTheDocument();
     });
   });
 
