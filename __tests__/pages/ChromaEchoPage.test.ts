@@ -37,6 +37,7 @@ describe("ChromaEchoPage", () => {
   afterEach(() => {
     jest.clearAllTimers();
     jest.useRealTimers();
+    jest.restoreAllMocks();
     document.body.innerHTML = "";
   });
 

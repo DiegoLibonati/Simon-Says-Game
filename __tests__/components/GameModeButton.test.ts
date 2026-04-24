@@ -26,6 +26,7 @@ const renderComponent = (
 describe("GameModeButton", () => {
   afterEach(() => {
     document.body.innerHTML = "";
+    jest.clearAllMocks();
   });
 
   describe("rendering", () => {
@@ -67,12 +68,7 @@ describe("GameModeButton", () => {
     });
 
     it("should render empty content when children is not provided", () => {
-      const element = GameModeButton({
-        id: "easy",
-        ariaLabel: "Easy mode",
-        onClick: mockOnClick,
-      });
-      document.body.appendChild(element);
+      renderComponent({ children: undefined });
       expect(
         screen.getByRole("button", { name: "Easy mode" })
       ).toHaveTextContent("");
