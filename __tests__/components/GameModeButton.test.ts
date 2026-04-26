@@ -68,7 +68,7 @@ describe("GameModeButton", () => {
     });
 
     it("should render empty content when children is not provided", () => {
-      renderComponent({ children: undefined });
+      renderComponent({ children: undefined! });
       expect(
         screen.getByRole("button", { name: "Easy mode" })
       ).toHaveTextContent("");
