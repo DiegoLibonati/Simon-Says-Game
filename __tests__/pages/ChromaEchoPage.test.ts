@@ -64,6 +64,13 @@ describe("ChromaEchoPage", () => {
       ).toBeInTheDocument();
     });
 
+    it("should render the start button with text START", () => {
+      renderPage();
+      expect(
+        screen.getByRole("button", { name: "Start game" })
+      ).toHaveTextContent("START");
+    });
+
     it("should render mode buttons from config", () => {
       renderPage();
       mockModes.forEach((mode) => {
@@ -85,6 +92,25 @@ describe("ChromaEchoPage", () => {
       expect(page.querySelector<HTMLDivElement>("#red")).toBeInTheDocument();
       expect(page.querySelector<HTMLDivElement>("#yellow")).toBeInTheDocument();
       expect(page.querySelector<HTMLDivElement>("#blue")).toBeInTheDocument();
+    });
+
+    it("should render the tutorial section", () => {
+      const page = renderPage();
+      expect(page.querySelector<HTMLElement>(".tutorial")).toBeInTheDocument();
+    });
+
+    it("should render the how to play heading", () => {
+      renderPage();
+      expect(
+        screen.getByRole("heading", { name: "¿How to play?" })
+      ).toBeInTheDocument();
+    });
+
+    it("should render the tutorial description text", () => {
+      renderPage();
+      expect(
+        screen.getByText(/Press the start button to start playing/i)
+      ).toBeInTheDocument();
     });
   });
 
@@ -170,6 +196,99 @@ describe("ChromaEchoPage", () => {
       await jest.advanceTimersByTimeAsync(500);
       expect(screen.getByText("SCORE: 1")).toBeInTheDocument();
     });
+
+    it("should add color highlight class when user clicks a color box during turn", async () => {
+      jest.spyOn(Math, "random").mockReturnValue(0);
+      const user = userEvent.setup({ delay: null });
+      const page = renderPage();
+
+      await user.click(screen.getByRole("button", { name: "Start game" }));
+      await jest.advanceTimersByTimeAsync(3000);
+
+      const greenBox = page.querySelector<HTMLDivElement>("#green")!;
+      await user.click(greenBox);
+
+      expect(greenBox).toHaveClass("game__box--green-color");
+    });
+
+    it("should remove the color highlight class after 100ms", async () => {
+      jest.spyOn(Math, "random").mockReturnValue(0);
+      const user = userEvent.setup({ delay: null });
+      const page = renderPage();
+
+      await user.click(screen.getByRole("button", { name: "Start game" }));
+      await jest.advanceTimersByTimeAsync(3000);
+
+      const greenBox = page.querySelector<HTMLDivElement>("#green")!;
+      await user.click(greenBox);
+      await jest.advanceTimersByTimeAsync(100);
+
+      expect(greenBox).not.toHaveClass("game__box--green-color");
+    });
+  });
+
+  describe("ia color highlight", () => {
+    it("should add color highlight class to the selected color box during IA turn", async () => {
+      jest.spyOn(Math, "random").mockReturnValue(0);
+      const user = userEvent.setup({ delay: null });
+      const page = renderPage();
+
+      await user.click(screen.getByRole("button", { name: "Start game" }));
+
+      const greenBox = page.querySelector<HTMLDivElement>("#green")!;
+      expect(greenBox).toHaveClass("game__box--green-color");
+    });
+
+    it("should remove the color highlight class after timeColorChange", async () => {
+      jest.spyOn(Math, "random").mockReturnValue(0);
+      const user = userEvent.setup({ delay: null });
+      const page = renderPage();
+
+      await user.click(screen.getByRole("button", { name: "Start game" }));
+      await jest.advanceTimersByTimeAsync(500);
+
+      const greenBox = page.querySelector<HTMLDivElement>("#green")!;
+      expect(greenBox).not.toHaveClass("game__box--green-color");
+    });
+  });
+
+  describe("game progression", () => {
+    it("should restart the game after losing", async () => {
+      jest.spyOn(Math, "random").mockReturnValue(0);
+      const user = userEvent.setup({ delay: null });
+      const page = renderPage();
+
+      await user.click(screen.getByRole("button", { name: "Start game" }));
+      await jest.advanceTimersByTimeAsync(3000);
+      const redBox = page.querySelector<HTMLDivElement>("#red")!;
+      await user.click(redBox);
+      expect(screen.getByText("PERDISTE")).toBeInTheDocument();
+
+      await user.click(screen.getByRole("button", { name: "Start game" }));
+      expect(screen.getByText("IA PLAYS")).toBeInTheDocument();
+      expect(screen.getByText("SCORE: 0")).toBeInTheDocument();
+    });
+
+    it("should increment score to 2 after two correct sequences", async () => {
+      jest.spyOn(Math, "random").mockReturnValue(0);
+      const user = userEvent.setup({ delay: null });
+      const page = renderPage();
+      const greenBox = page.querySelector<HTMLDivElement>("#green")!;
+
+      await user.click(screen.getByRole("button", { name: "Start game" }));
+      await jest.advanceTimersByTimeAsync(3000);
+      await user.click(greenBox);
+      await jest.advanceTimersByTimeAsync(500);
+      expect(screen.getByText("SCORE: 1")).toBeInTheDocument();
+
+      await jest.advanceTimersByTimeAsync(3000);
+      expect(screen.getByText("ITS YOUR TURN!")).toBeInTheDocument();
+
+      await user.click(greenBox);
+      await user.click(greenBox);
+      await jest.advanceTimersByTimeAsync(500);
+      expect(screen.getByText("SCORE: 2")).toBeInTheDocument();
+    });
   });
 
   describe("cleanup", () => {
@@ -201,6 +320,19 @@ describe("ChromaEchoPage", () => {
       page.cleanup?.();
       await user.click(screen.getByRole("button", { name: "Easy mode" }));
       expect(screen.queryByText("IA PLAYS")).not.toBeInTheDocument();
+    });
+
+    it("should clear pending timeouts on cleanup", async () => {
+      const user = userEvent.setup({ delay: null });
+      const page = renderPage();
+
+      await user.click(screen.getByRole("button", { name: "Start game" }));
+      expect(screen.getByText("IA PLAYS")).toBeInTheDocument();
+
+      page.cleanup?.();
+      await jest.advanceTimersByTimeAsync(5000);
+
+      expect(screen.queryByText("ITS YOUR TURN!")).not.toBeInTheDocument();
     });
   });
 });
