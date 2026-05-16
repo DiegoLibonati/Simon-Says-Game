@@ -85,6 +85,55 @@ For coverage report:
 npm run test:coverage
 ```
 
+## Continuous Integration
+
+The repository ships with a **GitHub Actions** pipeline defined in [`.github/workflows/ci.yml`](.github/workflows/ci.yml). It runs automatically on every `push` and `pull_request` targeting the `main` branch.
+
+### Pipeline overview
+
+```
+            ┌─── PR or push to main ───┐
+            ▼                          ▼
+┌──────────────────────┐  ┌──────────────────┐  ┌──────────────────┐
+│    lint-and-audit    │─▶│      testing     │─▶│       build      │
+│   eslint · tsc       │  │   jest (jsdom)   │  │   vite build     │
+└──────────────────────┘  └──────────────────┘  └──────────────────┘
+```
+
+Each job runs on `ubuntu-latest`, checks out the repo with `actions/checkout@v4.2.2`, sets up Node via `actions/setup-node@v4` (using the version pinned in `.nvmrc` and the built-in `npm` cache), and installs dependencies with `npm ci` before running its step.
+
+### Validation jobs (run on every PR and push)
+
+1. **`lint-and-audit`** — runs `npm run lint` (ESLint with the flat config in `eslint.config.js`) and `npm run type-check` (`tsc --noEmit`). This is the gating job; the next two only start after it succeeds.
+2. **`testing`** — needs `lint-and-audit`. Runs the full Jest suite via `npm run test` against the `jsdom` environment configured in `jest.config.js`.
+3. **`build`** — needs `testing`. Runs `npm run build`, which type-checks with `tsconfig.app.json` and produces the production bundle through Vite. Acts as a smoke test that the project still compiles end-to-end.
+
+If any job fails the whole pipeline is marked as failed and the dependent jobs are skipped, so a broken lint or type error short-circuits the run before tests or the bundle are attempted.
+
+### Where the build outputs live
+
+| Output                       | Location                     |
+| ---------------------------- | ---------------------------- |
+| Validation logs (lint, type) | **Actions** tab on GitHub    |
+| Test results                 | **Actions** tab on GitHub    |
+| Production bundle (`dist/`)  | Ephemeral, inside the runner |
+
+> **Note:** the workflow does not publish artifacts or releases — the build step exists only to verify the project compiles. To get a deployable bundle, run `npm run build` locally.
+
+### Running the same checks locally
+
+```bash
+# lint-and-audit
+npm run lint
+npm run type-check
+
+# testing
+npm test
+
+# build
+npm run build
+```
+
 ## Security Audit
 
 Beyond functional tests, you can also audit the dependency tree for known vulnerabilities.
